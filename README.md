@@ -63,6 +63,8 @@ cp config.example.json config.json
 }
 ```
 
+**Note:** Replace `octopi.local` with your actual Octoprint address (e.g., `http://192.168.1.100` or your hostname).
+
 ### Getting Octoprint API Key
 1. Open Octoprint web interface
 2. Go to Settings (wrench icon)
