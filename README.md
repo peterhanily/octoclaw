@@ -1,6 +1,6 @@
 # OctoClaw - Enhanced Octoprint Skill for OpenClaw
 
-A comprehensive OpenClaw skill for controlling and monitoring Octoprint 3D printers with advanced features including formatted status displays, webcam snapshots, gcode analysis, error monitoring, and Telegram integration.
+A comprehensive OpenClaw skill for controlling and monitoring OctoPrint 3D printers with advanced features including formatted status displays, webcam snapshots, gcode analysis, error monitoring, and Telegram integration.
 
 ## Features
 
