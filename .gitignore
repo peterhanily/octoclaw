@@ -1,5 +1,5 @@
 # Octoprint credentials
-.claude/skills/octoclaw/config.json
+config.json
 
 # Python
 __pycache__/

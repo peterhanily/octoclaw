@@ -1,6 +1,6 @@
-# OctoClaw - Enhanced Octoprint Skill for Claude Code
+# OctoClaw - Enhanced Octoprint Skill for OpenClaw
 
-A comprehensive Claude Code skill for controlling and monitoring Octoprint 3D printers with advanced features including formatted status displays, webcam snapshots, gcode analysis, error monitoring, and Telegram integration.
+A comprehensive OpenClaw skill for controlling and monitoring Octoprint 3D printers with advanced features including formatted status displays, webcam snapshots, gcode analysis, error monitoring, and Telegram integration.
 
 ## Features
 
@@ -24,17 +24,35 @@ A comprehensive Claude Code skill for controlling and monitoring Octoprint 3D pr
 
 ## Installation
 
-1. Copy the skill to your Claude skills directory:
+### Method 1: Install from GitHub (Recommended)
+
 ```bash
-cp -r .claude/skills/octoclaw ~/.claude/skills/
+cd ~/.openclaw/workspace/skills/
+git clone https://github.com/yourusername/octoclaw.git
+cd octoclaw
+./install.sh
 ```
 
-2. Configure your Octoprint connection:
+### Method 2: Manual Installation
+
+1. Clone or download this repository to your OpenClaw workspace:
 ```bash
-cp ~/.claude/skills/octoclaw/config.example.json ~/.claude/skills/octoclaw/config.json
+cd ~/.openclaw/workspace/skills/
+git clone https://github.com/yourusername/octoclaw.git
 ```
 
-3. Edit `~/.claude/skills/octoclaw/config.json` with your settings:
+2. Install Python dependencies:
+```bash
+python3 -m pip install --user requests
+```
+
+3. Copy and configure settings:
+```bash
+cd octoclaw
+cp config.example.json config.json
+```
+
+4. Edit `config.json` with your settings:
 ```json
 {
   "octoprint_url": "http://octopi.local",
@@ -66,47 +84,47 @@ cp ~/.claude/skills/octoclaw/config.example.json ~/.claude/skills/octoclaw/confi
 
 **Check printer status (formatted):**
 ```bash
-python3 ~/.claude/skills/octoclaw/scripts/octoprint.py status-pretty
+python3 ~/.openclaw/workspace/skills/octoclaw/scripts/octoprint.py status-pretty
 ```
 
 **Capture webcam snapshot:**
 ```bash
-python3 ~/.claude/skills/octoclaw/scripts/octoprint.py snapshot
+python3 ~/.openclaw/workspace/skills/octoclaw/scripts/octoprint.py snapshot
 ```
 
 **Analyze a gcode file:**
 ```bash
-python3 ~/.claude/skills/octoclaw/scripts/octoprint.py analyze ~/Downloads/benchy.gcode
+python3 ~/.openclaw/workspace/skills/octoclaw/scripts/octoprint.py analyze ~/Downloads/benchy.gcode
 ```
 
 **Check for errors:**
 ```bash
-python3 ~/.claude/skills/octoclaw/scripts/octoprint.py check-errors
+python3 ~/.openclaw/workspace/skills/octoclaw/scripts/octoprint.py check-errors
 ```
 
 **Send status to Telegram:**
 ```bash
-python3 ~/.claude/skills/octoclaw/scripts/octoprint.py telegram-status
+python3 ~/.openclaw/workspace/skills/octoclaw/scripts/octoprint.py telegram-status
 ```
 
 **Send snapshot to Telegram:**
 ```bash
-python3 ~/.claude/skills/octoclaw/scripts/octoprint.py telegram-snapshot
+python3 ~/.openclaw/workspace/skills/octoclaw/scripts/octoprint.py telegram-snapshot
 ```
 
 **Start a print:**
 ```bash
-python3 ~/.claude/skills/octoclaw/scripts/octoprint.py print benchy.gcode
+python3 ~/.openclaw/workspace/skills/octoclaw/scripts/octoprint.py print benchy.gcode
 ```
 
 **Control print (pause/resume/cancel):**
 ```bash
-python3 ~/.claude/skills/octoclaw/scripts/octoprint.py control pause
+python3 ~/.openclaw/workspace/skills/octoclaw/scripts/octoprint.py control pause
 ```
 
-### Claude Code Skill Usage
+### OpenClaw Skill Usage
 
-Once the skill is installed and Claude Code is restarted, you can use:
+Once the skill is installed, you can use it from the OpenClaw dashboard or CLI:
 
 ```
 /octoclaw status        - Show formatted status
@@ -116,11 +134,13 @@ Once the skill is installed and Claude Code is restarted, you can use:
 /octoclaw print <file>  - Start printing
 ```
 
-Or simply ask Claude to interact with your printer:
+Or simply ask OpenClaw to interact with your printer:
 - "Check my 3D printer status"
 - "Send me a snapshot of my print on Telegram"
 - "Analyze this gcode file and tell me how long it will take"
 - "Check if there are any errors with my printer"
+
+The skill will appear in your OpenClaw Gateway Dashboard under Skills once installed.
 
 ## Available Commands
 
@@ -182,20 +202,33 @@ Extracts from gcode files:
 
 ## Troubleshooting
 
+**Skill not appearing in OpenClaw:**
+- Restart OpenClaw after installation
+- Check that the skill is in `~/.openclaw/workspace/skills/octoclaw/`
+- Verify SKILL.md exists and has proper frontmatter
+- Check OpenClaw logs in `~/.openclaw/logs/`
+
 **Connection errors:**
 - Verify Octoprint URL is correct in config.json
 - Check API key is valid
 - Ensure Octoprint is running and accessible
+- Test the URL directly: `curl http://your-octoprint-ip/api/version -H "X-Api-Key: YOUR_KEY"`
 
 **Webcam snapshot fails:**
 - Verify webcam_url in config.json
 - Check webcam is enabled in Octoprint settings
 - Test URL directly in browser
+- Some webcams require authentication
 
 **Telegram not working:**
 - Verify bot token and chat ID are correct
 - Ensure you've messaged the bot at least once
 - Check bot permissions
+- Test with: `python3 scripts/octoprint.py telegram-msg "test"`
+
+**Python dependencies:**
+- Install requests: `python3 -m pip install --user requests`
+- Check Python version: `python3 --version` (requires 3.6+)
 
 ## Contributing
 
@@ -207,5 +240,5 @@ MIT
 
 ## Credits
 
-Created for use with Claude Code by Anthropic.
+Created for use with OpenClaw - The AI coding assistant.
 Uses the Octoprint REST API for printer control.

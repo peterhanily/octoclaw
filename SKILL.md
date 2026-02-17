@@ -12,7 +12,7 @@ You are now controlling an Octoprint 3D printer instance with advanced monitorin
 
 ## Helper Script Location
 
-`~/.claude/skills/octoclaw/scripts/octoprint.py`
+`$SKILL_DIR/scripts/octoprint.py`
 
 ## Core Commands
 
